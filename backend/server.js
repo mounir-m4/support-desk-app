@@ -30,8 +30,10 @@ app.get('/', (req, res) => {
 	});
 });
 
-//users
+//Users
 app.use('/api/users', require('./routes/userRoutes'));
+//Tickets
+app.use('/api/tickets', require('./routes/ticketRoutes'));
 
 // error handler handler
 app.use(errorHandler);

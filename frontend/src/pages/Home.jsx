@@ -11,8 +11,8 @@ const Home = () => {
 			<Link to='/new-ticket' className='btn btn-reverse btn-block'>
 				<FaQuestionCircle /> Create New Ticket
 			</Link>
-			<Link to='/new-ticket' className='btn btn-reverse btn-block'>
-				<FaTicketAlt /> View My Ticket
+			<Link to='/tickets' className='btn btn-reverse btn-block'>
+				<FaTicketAlt /> View My Tickets
 			</Link>
 		</>
 	);
