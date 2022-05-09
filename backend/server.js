@@ -1,8 +1,10 @@
 const express = require('express');
+const path = require('path');
 const dotenv = require('dotenv').config();
 const { errorHandler } = require('./middleware/ErrorMiddleware');
 const colors = require('colors');
 const connect = require('./config/db');
+const { path } = require('express/lib/application');
 const PORT = process.env.PORT || 8000;
 
 //conect to database
@@ -23,17 +25,26 @@ app.use((req, res, next) => {
 
 // Routes
 
-//home
-app.get('/', (req, res) => {
-	res.status(200).json({
-		message: 'Welcome to support desk API',
-	});
-});
-
 //Users
 app.use('/api/users', require('./routes/userRoutes'));
 //Tickets
 app.use('/api/tickets', require('./routes/ticketRoutes'));
+
+// serve frontend
+if (process.env.NODE_ENV === 'production') {
+	//set build folder as static
+	app.use(express.static(path.join(__dirname, '../frontend/build')));
+	app.get('*', (req, res) =>
+		res.sendFile(__dirname, '../', 'frontend', 'build', 'index.html')
+	);
+} else {
+	//home
+	app.get('/', (req, res) => {
+		res.status(200).json({
+			message: 'Welcome to support desk API',
+		});
+	});
+}
 
 // error handler handler
 app.use(errorHandler);
