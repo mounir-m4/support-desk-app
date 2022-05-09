@@ -13,13 +13,13 @@ const getNotes = asyncHandler(async (req, res) => {
 		res.status('401');
 		throw new Error('User not found');
 	}
-	// find all tickets that belong to  current logged in user
+	// find all tickets that belongs to the current loggedIn user
 	const ticket = await Ticket.findById(req.params.ticketId);
 	if (ticket.user.toString() !== req.user.id) {
 		res.status(401);
 		throw new Error('User Not Authorized');
 	}
-	// fetch notes related to it's user
+	// find all notes that belongs to the current loggedIn user
 	const notes = await Note.find({
 		ticket: req.params.ticketId,
 	});
