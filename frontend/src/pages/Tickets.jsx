@@ -36,11 +36,9 @@ const Tickets = () => {
 					<div>Status</div>
 					<div>actions</div>
 				</div>
-				{Array.isArray(tickets)
-					? tickets.map((ticket) => (
-							<TicketItem key={ticket._id} ticket={ticket} />
-					  ))
-					: null}
+				{tickets.map((ticket) => (
+					<TicketItem key={ticket._id} ticket={ticket} />
+				))}
 			</div>
 		</>
 	)
