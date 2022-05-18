@@ -3,8 +3,7 @@ const path = require('path');
 const dotenv = require('dotenv').config();
 const { errorHandler } = require('./middleware/ErrorMiddleware');
 const colors = require('colors');
-const connect = require('./config/db');
-const { path } = require('express/lib/application');
+const connect = require('./config/db')
 const PORT = process.env.PORT || 8000;
 
 //conect to database
